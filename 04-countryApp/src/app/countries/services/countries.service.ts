@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, of, map, delay, tap } from 'rxjs';
+import { Observable, catchError, of, map, tap } from 'rxjs';
+
 import { Country } from '../interfaces/country';
 import { CacheStore } from '../interfaces/cache-store.interface';
 import { Region } from '../interfaces/region.type';
@@ -24,7 +25,7 @@ export class CountriesService {
   }
 
   private loadFromLocalStorage(){
-    if(localStorage.getItem('cacheStore')) return;
+    if(!localStorage.getItem('cacheStore')) return;
 
     this.cacheStore = JSON.parse(localStorage.getItem('cacheStore')!)
   }
